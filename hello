@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         script doing nothing hello!
-// @version      0.100
-// @description  what a shame!
+// @name         script doing nothing hello!..
+// @version      0.5000
+// @description  what a shame!!!!!
 // @match        *://*/*
 // @grant        unsafeWindow
 // @run-at       document-start
