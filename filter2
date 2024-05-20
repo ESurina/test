@@ -1,8 +1,9 @@
 ! Title: На другой день были у фельдмаршала обед и бал, которые государь удостоил своим присутствием
 ! Description: main filter 
-! Version: 0.0.29
+! Version: 1.0.29
 ! Updated: 2023-07-5T18:27:35+03:00
 ! Homepage: https://raw.githubusercontent.com/Versty/testdata/master/Filter.txt
 
 @@||gismeteo.ru^
 ||vk.ru^
+||lenta.ru^
