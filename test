@@ -1,0 +1,9 @@
+! Title: test
+! Description: main filter 
+! Version: 7.1
+! TimeUpdated: 2025-12-15T18:27:35+03:00
+! Homepage: https://raw.githubusercontent.com/Versty/testdata/master/Filter.txt
+
+@@||gismeteo.ru^
+||vk.ru^
+||lenta.ru^
