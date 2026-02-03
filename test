@@ -1,0 +1,13 @@
+// ==UserScript==
+// @name         script doing nothing hello
+// @version      100.4
+// @description  what a shame
+// @match        *://*/*
+// @grant        unsafeWindow
+// @run-at       document-start
+// @updateURL https://raw.githubusercontent.com/ESurina/test/main/hello
+// ==/UserScript==
+
+(function() {
+
+})();
