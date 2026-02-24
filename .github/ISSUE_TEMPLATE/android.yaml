@@ -1,12 +1,72 @@
-name: Android
-description: If an app experiences issues with AdGuard on Android that cannot be resolved using standard filter lists
-labels: "Feature request"
+name: "📱 Android Compatibility Report"
+description: Проблемы с SSL Pinning, QUIC или работой конкретных приложений на Android
+title: "[Android]: <Название приложения>"
+labels: ["android", "compatibility"]
 body:
-  - type: input
-    id: platform
+  - type: markdown
     attributes:
-      label: Platform
-      description: What platform are you running?
-      placeholder: For example, Android
+      value: |
+        Перед заполнением убедитесь, что вы проверили разделы **How to troubleshoot** в README.
+        Если проблема решается простым отключением фильтра в журнале — пишите в репозиторий [AdguardFilters](https://github.com/AdguardTeam/AdguardFilters).
+
+  - type: input
+    id: app_name
+    attributes:
+      label: Название приложения
+      placeholder: "Например: Max, Сбербанк"
     validations:
       required: true
+
+  - type: input
+    id: package_id
+    attributes:
+      label: Package ID приложения
+      placeholder: "Например: com.google.android.youtube"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Тип проблемы (на основе диагностики)
+      description: Что помогло вернуть приложению работоспособность?
+      options:
+        - "SSL Pinning (помогло отключение фильтрации HTTPS)"
+        - "QUIC Issue (помогло добавление в QUIC bypass)"
+        - "App Malfunction (помогло полное отключение фильтрации трафика)"
+        - "Network Issue (помогло исключение IP-диапазона)"
+        - "Другое"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target_list
+    attributes:
+      label: В какой список добавить?
+      description: Выберите подходящий файл из репозитория
+      options:
+        - "filter_traffic_exclusions.json (полное исключение из маршрутизации)"
+        - "block_ads_exclusions.json (отключение блокировки рекламы)"
+        - "filter_https_traffic_exclusions.json (отключение HTTPS фильтрации)"
+        - "quic_pkg_exclusions.txt (обход QUIC)"
+        - "pkg_exclusions.txt (низкоуровневое исключение)"
+        - "ipv4_routes_exclusions.txt (исключение IP)"
+        - "Не уверен"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Результаты диагностики
+      placeholder: "Например: вывод mitmproxy или лог фильтрации AdGuard"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Подтверждение
+      options:
+        - label: "Я подтверждаю, что проблема не в конкретном фильтре (правиле), а в самом способе работы приложения."
+          required: true
