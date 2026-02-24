@@ -2,7 +2,7 @@ name: Feature request
 description: If an app experiences issues with AdGuard that cannot be resolved using standard filter lists
 labels: "Feature request"
 body:
- - type: input
+  - type: input
     id: platform
     attributes:
       label: Platform
