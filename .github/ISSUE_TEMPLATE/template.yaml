@@ -1,5 +1,5 @@
-name: Feature request
-description: If an app experiences issues with AdGuard that cannot be resolved using standard filter lists
+name: Android
+description: If an app experiences issues with AdGuard on Android that cannot be resolved using standard filter lists
 labels: "Feature request"
 body:
   - type: input
