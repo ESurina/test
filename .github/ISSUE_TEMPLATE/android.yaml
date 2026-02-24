@@ -1,72 +1,91 @@
 name: "📱 Android Compatibility Report"
-description: Проблемы с SSL Pinning, QUIC или работой конкретных приложений на Android
-title: "[Android]: <Название приложения>"
+description: Report SSL Pinning, QUIC, or app-specific filtering issues on Android
+title: "[Android]: <App Name>"
 labels: ["android", "compatibility"]
 body:
   - type: markdown
     attributes:
       value: |
-        Перед заполнением убедитесь, что вы проверили разделы **How to troubleshoot** в README.
-        Если проблема решается простым отключением фильтра в журнале — пишите в репозиторий [AdguardFilters](https://github.com/AdguardTeam/AdguardFilters).
+        ### Before submitting
+        Please ensure you have followed the [Troubleshooting Guide](https://github.com/your-repo#how-to-troubleshoot) in the README.
+        * If a specific filter rule is causing the issue, please report it to [AdguardFilters](https://github.com/AdguardTeam/AdguardFilters).
+        * This repo is for app-level exclusions and low-level compatibility settings.
 
   - type: input
     id: app_name
     attributes:
-      label: Название приложения
-      placeholder: "Например: Max, Сбербанк"
+      label: App Name
+      placeholder: "e.g., MAX, Sberbank, YouTube"
     validations:
       required: true
 
   - type: input
     id: package_id
     attributes:
-      label: Package ID приложения
-      placeholder: "Например: com.google.android.youtube"
+      label: Application Package ID
+      placeholder: "e.g., com.google.android.youtube"
     validations:
       required: true
 
   - type: dropdown
-    id: issue_type
+    id: platform_version
     attributes:
-      label: Тип проблемы (на основе диагностики)
-      description: Что помогло вернуть приложению работоспособность?
+      label: Android Version
       options:
-        - "SSL Pinning (помогло отключение фильтрации HTTPS)"
-        - "QUIC Issue (помогло добавление в QUIC bypass)"
-        - "App Malfunction (помогло полное отключение фильтрации трафика)"
-        - "Network Issue (помогло исключение IP-диапазона)"
-        - "Другое"
+        - "Android 14"
+        - "Android 13"
+        - "Android 12 or lower"
     validations:
       required: true
 
   - type: dropdown
-    id: target_list
+    id: diagnosis_result
     attributes:
-      label: В какой список добавить?
-      description: Выберите подходящий файл из репозитория
+      label: Diagnosis Result
+      description: Which troubleshooting step resolved the issue?
       options:
-        - "filter_traffic_exclusions.json (полное исключение из маршрутизации)"
-        - "block_ads_exclusions.json (отключение блокировки рекламы)"
-        - "filter_https_traffic_exclusions.json (отключение HTTPS фильтрации)"
-        - "quic_pkg_exclusions.txt (обход QUIC)"
-        - "pkg_exclusions.txt (низкоуровневое исключение)"
-        - "ipv4_routes_exclusions.txt (исключение IP)"
-        - "Не уверен"
+        - "SSL Pinning (Fixed by disabling HTTPS filtering)"
+        - "QUIC Issue (Fixed by adding to QUIC bypass)"
+        - "Routing Issue (Fixed by disabling 'Route traffic through AdGuard')"
+        - "IP/Network Issue (Fixed by excluding IP ranges)"
+        - "Other / Not sure"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: suggested_list
+    attributes:
+      label: Suggested Configuration List
+      description: Which list should this app be added to?
+      options:
+        - "filter_traffic_exclusions.json (Disable routing completely)"
+        - "block_ads_exclusions.json (Disable ad blocking)"
+        - "filter_https_traffic_exclusions.json (Disable HTTPS filtering)"
+        - "quic_pkg_exclusions.txt (Allow QUIC traffic)"
+        - "pkg_exclusions.txt (Low-level exclusion)"
+        - "ipv4_routes_exclusions.txt (IP exclusion)"
+        - "Not sure / Please investigate"
     validations:
       required: true
 
   - type: textarea
-    id: logs
+    id: technical_details
     attributes:
-      label: Результаты диагностики
-      placeholder: "Например: вывод mitmproxy или лог фильтрации AdGuard"
+      label: Technical Details / Logs
+      placeholder: "Paste mitmproxy logs (e.g., TLS alert certificate unknown) or Filtering Log details here."
     validations:
       required: false
 
   - type: checkboxes
     id: confirmation
     attributes:
-      label: Подтверждение
+      label: Verification
       options:
-        - label: "Я подтверждаю, что проблема не в конкретном фильтре (правиле), а в самом способе работы приложения."
+        - label: "I confirm that this is a compatibility issue, not a missed ad or a filter rule bug."
           required: true
+        - label: "I am using default filtering settings for this app."
+          required: true
+
+  - type: markdown
+    attributes:
+      value: "Thank you for contributing! Our team will investigate the Package ID provided."
