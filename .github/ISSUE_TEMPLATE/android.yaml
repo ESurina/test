@@ -1,5 +1,5 @@
 name: "📱 Android Compatibility Report"
-description: Report issues like SSL Pinning, QUIC, or app malfunctions (Global)
+description: Report an issue with an Android app that happens only when AdGuard is ON
 title: "[Android]: <App Name>"
 labels: ["android", "compatibility"]
 body:
