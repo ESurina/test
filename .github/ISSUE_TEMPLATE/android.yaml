@@ -78,3 +78,12 @@ body:
     id: confirmation
     attributes:
       label: Final Checks
+      options:
+        - label: "I have confirmed that disabling the Tracking Protection or specific filters did NOT fix the issue."
+          required: true
+        - label: "I am using the default filtering settings for this application."
+          required: true
+
+  - type: markdown
+    attributes:
+      value: "Thank you for your report! Our team will review the compatibility status for this Package ID."
