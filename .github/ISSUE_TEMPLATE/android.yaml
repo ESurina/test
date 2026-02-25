@@ -1,21 +1,21 @@
 name: "📱 Android Compatibility Report"
-description: Report SSL Pinning, QUIC, or app-specific filtering issues on Android
+description: Report issues like SSL Pinning, QUIC, or app malfunctions (Global)
 title: "[Android]: <App Name>"
 labels: ["android", "compatibility"]
 body:
   - type: markdown
     attributes:
       value: |
-        ### Before submitting
-        Please ensure you have followed the [Troubleshooting Guide](https://github.com/your-repo#how-to-troubleshoot) in the README.
-        * If a specific filter rule is causing the issue, please report it to [AdguardFilters](https://github.com/AdguardTeam/AdguardFilters).
-        * This repo is for app-level exclusions and low-level compatibility settings.
+        ### Submission Guidelines
+        Please ensure you have followed the [Troubleshooting Guide](https://github.com/your-repo#how-to-troubleshoot).
+        * Use this form only if the app malfunctions due to AdGuard's interception (e.g., connection errors, SSL issues).
+        * For missed ads or website breakage, please use the [AdguardFilters](https://github.com/AdguardTeam/AdguardFilters) repository.
 
   - type: input
     id: app_name
     attributes:
-      label: App Name
-      placeholder: "e.g., MAX, Sberbank, YouTube"
+      label: Application Name
+      placeholder: "e.g., Netflix, WhatsApp, PayPal"
     validations:
       required: true
 
@@ -23,31 +23,21 @@ body:
     id: package_id
     attributes:
       label: Application Package ID
-      placeholder: "e.g., com.google.android.youtube"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: platform_version
-    attributes:
-      label: Android Version
-      options:
-        - "Android 14"
-        - "Android 13"
-        - "Android 12 or lower"
+      placeholder: "e.g., com.netflix.mediaclient"
+      description: "You can find this in AdGuard App Management or on the Play Store URL."
     validations:
       required: true
 
   - type: dropdown
     id: diagnosis_result
     attributes:
-      label: Diagnosis Result
-      description: Which troubleshooting step resolved the issue?
+      label: Troubleshooting Result
+      description: Which step resolved the issue during your testing?
       options:
-        - "SSL Pinning (Fixed by disabling HTTPS filtering)"
-        - "QUIC Issue (Fixed by adding to QUIC bypass)"
-        - "Routing Issue (Fixed by disabling 'Route traffic through AdGuard')"
-        - "IP/Network Issue (Fixed by excluding IP ranges)"
+        - "Disabling HTTPS filtering (Suggests SSL Pinning)"
+        - "Adding to QUIC bypass (Suggests QUIC-related playback/loading issues)"
+        - "Disabling 'Route traffic' (Suggests low-level conflict)"
+        - "Excluding IP ranges (Suggests connection/gateway issues)"
         - "Other / Not sure"
     validations:
       required: true
@@ -56,15 +46,23 @@ body:
     id: suggested_list
     attributes:
       label: Suggested Configuration List
-      description: Which list should this app be added to?
+      description: Based on your findings, which list should be updated?
       options:
-        - "filter_traffic_exclusions.json (Disable routing completely)"
+        - "filter_traffic_exclusions.json (Disable routing)"
         - "block_ads_exclusions.json (Disable ad blocking)"
         - "filter_https_traffic_exclusions.json (Disable HTTPS filtering)"
         - "quic_pkg_exclusions.txt (Allow QUIC traffic)"
         - "pkg_exclusions.txt (Low-level exclusion)"
         - "ipv4_routes_exclusions.txt (IP exclusion)"
-        - "Not sure / Please investigate"
+        - "I am not sure, please investigate"
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: Description of the Problem
+      placeholder: "Describe what happens (e.g., 'App says No Internet Connection', 'Videos won't play', etc.)"
     validations:
       required: true
 
@@ -72,20 +70,11 @@ body:
     id: technical_details
     attributes:
       label: Technical Details / Logs
-      placeholder: "Paste mitmproxy logs (e.g., TLS alert certificate unknown) or Filtering Log details here."
+      placeholder: "Paste mitmproxy error logs, 'Client TLS handshake failed' messages, or relevant Filtering Log entries."
     validations:
       required: false
 
   - type: checkboxes
     id: confirmation
     attributes:
-      label: Verification
-      options:
-        - label: "I confirm that this is a compatibility issue, not a missed ad or a filter rule bug."
-          required: true
-        - label: "I am using default filtering settings for this app."
-          required: true
-
-  - type: markdown
-    attributes:
-      value: "Thank you for contributing! Our team will investigate the Package ID provided."
+      label: Final Checks
