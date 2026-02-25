@@ -66,14 +66,6 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: technical_details
-    attributes:
-      label: Technical Details / Logs
-      placeholder: "Paste mitmproxy error logs, 'Client TLS handshake failed' messages, or relevant Filtering Log entries."
-    validations:
-      required: false
-
   - type: checkboxes
     id: confirmation
     attributes:
