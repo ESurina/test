@@ -1,0 +1,4 @@
+! Title: Conditions directive test
+!#if adguard_app_windows
+example.com##div
+!#endif
