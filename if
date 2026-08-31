@@ -1,4 +1,3 @@
 ! Title: Conditions directive test
-!#if (adguard_app_windows)
-example.org##div
-!#endif
+!+ PLATFORM(ios)
+example.com##div
