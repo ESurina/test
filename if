@@ -1,3 +1,3 @@
 ! Title: Adguard iOS remove bug
-www.reddit.com##reddit-search-small[expanded-composer-enabled]:remove-attr(expanded-composer-enabled)
+www.reddit.com#%#//scriptlet('remove-attr', 'expanded-composer-enabled', 'reddit-search-small[expanded-composer-enabled]')
 www.reddit.com###answers-nav-button
